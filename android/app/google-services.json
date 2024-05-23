@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "959050064681",
+    "project_id": "maxtrip-a968f",
+    "storage_bucket": "maxtrip-a968f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959050064681:android:5e6ba34a0ed1e1b2f24d38",
+        "android_client_info": {
+          "package_name": "com.example.maxtrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959050064681-6err4ngke645be1uv8pvlh13oe7lpo0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maxtrip",
+            "certificate_hash": "d5eb6f25249d76a9aaa45ec4deea98b6c4b806ee"
+          }
+        },
+        {
+          "client_id": "959050064681-5kjkq6140mc8engpgt22lhp0ck81t8qq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbJzU1-sn8AB8VYFxC9GvF4CYdVqnDwrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959050064681-5kjkq6140mc8engpgt22lhp0ck81t8qq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maxtrip"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959050064681:android:d1828fb51a2c687bf24d38",
+        "android_client_info": {
+          "package_name": "com.malinx.MaxTrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959050064681-5kjkq6140mc8engpgt22lhp0ck81t8qq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbJzU1-sn8AB8VYFxC9GvF4CYdVqnDwrc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959050064681-5kjkq6140mc8engpgt22lhp0ck81t8qq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maxtrip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
