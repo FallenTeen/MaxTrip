@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:maxtrip/firebase_options.dart';
 import 'package:maxtrip/halaman/authpage.dart';
 import 'package:maxtrip/halaman/hal_utama.dart';
+import 'package:maxtrip/screens/mainpage.dart';
 import 'halaman/hal_login.dart';
-import 'package:maxtrip/halaman/main_screen.dart';
-import 'package:maxtrip/util/const.dart';
+import 'screens/hotels_screen.dart';
+import 'screens/activities_screen.dart';
+import 'widgets/side_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HalLogin(),
+      home: MainPage(),
     );
   }
 }
