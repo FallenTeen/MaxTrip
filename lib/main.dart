@@ -4,6 +4,8 @@ import 'package:maxtrip/firebase_options.dart';
 import 'package:maxtrip/halaman/authpage.dart';
 import 'package:maxtrip/halaman/hal_utama.dart';
 import 'halaman/hal_login.dart';
+import 'package:maxtrip/halaman/main_screen.dart';
+import 'package:maxtrip/util/const.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
