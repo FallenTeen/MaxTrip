@@ -14,7 +14,7 @@ class HotelsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           SizedBox(height: 50),
-          CustomHeader(title: 'Hotels'),
+          CustomHeader(title: 'Hotel'),
         ],
       ),
     );

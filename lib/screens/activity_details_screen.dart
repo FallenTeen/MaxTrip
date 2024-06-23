@@ -105,7 +105,7 @@ class _ActivityInformation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '\$${activity.price}',
+                  '\Rp ${activity.price}',
                   style: Theme.of(context)
                       .textTheme
                       .titleLarge!
@@ -114,13 +114,13 @@ class _ActivityInformation extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF231955),
+                    backgroundColor: Color.fromARGB(255, 16, 138, 204),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                   ),
                   child: Text(
-                    'Book Now',
+                    'Buat Rencana',
                     style: Theme.of(context)
                         .textTheme
                         .bodyLarge!

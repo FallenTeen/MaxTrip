@@ -20,7 +20,7 @@ class ActivitiesScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50),
-          const CustomHeader(title: 'Activities'),
+          const CustomHeader(title: 'Wisata'),
           _ActivitiesMasonryGrid(
             width: width,
             activities: activities,

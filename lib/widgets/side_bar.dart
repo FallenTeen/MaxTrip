@@ -18,10 +18,9 @@ class SideBar extends StatefulWidget {
 
 class _SideBarState extends State<SideBar> {
   List<Map> menu = [
-    {'title': 'Activities', 'routeName': '/activities'},
-    {'title': 'Hotels', 'routeName': '/hotels'},
-    {'title': 'Flights', 'routeName': '/flights'},
-    {'title': 'Restaurants', 'routeName': '/restaurants'},
+    {'title': 'Wisata', 'routeName': '/activities'},
+    {'title': 'Hotel', 'routeName': '/hotels'},
+    {'title': 'Restoran', 'routeName': '/restaurants'},
   ];
 
   int sideBarIndex = 0;
@@ -30,7 +29,7 @@ class _SideBarState extends State<SideBar> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.width * 0.20,
-      color: const Color(0xFF231955),
+      color: Color.fromARGB(255, 16, 138, 204),
       child: Column(
         children: [
           SizedBox(height: widget.height * 0.05),

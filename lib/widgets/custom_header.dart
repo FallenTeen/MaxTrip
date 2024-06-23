@@ -4,7 +4,7 @@ class CustomHeader extends StatelessWidget {
   const CustomHeader({
     Key? key,
     required this.title,
-    this.subtitle = 'Enjoy your holiday in Italy',
+    this.subtitle = 'Enjoy your holiday in Banyumas',
   }) : super(key: key);
 
   final String title;
