@@ -3,69 +3,31 @@ import 'package:maxtrip/screens/hotels_screen.dart';
 import 'package:maxtrip/screens/activities_screen.dart';
 import 'package:maxtrip/widgets/side_bar.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      initialRoute: '/activities',
-      routes: {
-        ActivitiesScreen.routeName: (context) => const ActivitiesScreen(),
-        HotelsScreen.routeName: ((context) => const HotelsScreen()),
-      },
-      builder: (context, child) {
-        if (child != null) {
-          return _MainPageContent(
-            navigator: (child!.key as GlobalKey<NavigatorState>),
-            child: child,
-          );
-        } else {
-          return const SizedBox.shrink();
-        }
-      },
-    );
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  bool _isOnboarding = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Setel _isOnboarding ke false saat inisialisasi
+    _isOnboarding = false;
   }
-}
-
-class _MainPageContent extends StatefulWidget {
-  const _MainPageContent({
-    Key? key,
-    required this.navigator,
-    required this.child,
-  }) : super(key: key);
-
-  final GlobalKey<NavigatorState> navigator;
-  final Widget child;
-
-  @override
-  State<_MainPageContent> createState() => _MainPageContentState();
-}
-
-class _MainPageContentState extends State<_MainPageContent> {
-  bool isOnboarding = true;
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: const Color(0xFFF5EDDC),
-      body: isOnboarding
+      body: _isOnboarding
           ? _buildOnboarding(context)
-          : Row(
-              children: [
-                SideBar(
-                  width: width,
-                  height: height,
-                  navigator: widget.navigator,
-                ),
-                Expanded(child: widget.child)
-              ],
-            ),
+          : _buildMainContent(context),
     );
   }
 
@@ -100,7 +62,7 @@ class _MainPageContentState extends State<_MainPageContent> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  isOnboarding = false;
+                  _isOnboarding = false;
                 });
               },
               style: ElevatedButton.styleFrom(
@@ -128,6 +90,40 @@ class _MainPageContentState extends State<_MainPageContent> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildMainContent(BuildContext context) {
+    return Row(
+      children: [
+        SideBar(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          navigator: _navigatorKey,
+        ),
+        Expanded(
+          child: Navigator(
+            key: _navigatorKey,
+            initialRoute: ActivitiesScreen.routeName,
+            onGenerateRoute: (settings) {
+              switch (settings.name) {
+                case ActivitiesScreen.routeName:
+                  return MaterialPageRoute(
+                    builder: (context) => const ActivitiesScreen(),
+                  );
+                case HotelsScreen.routeName:
+                  return MaterialPageRoute(
+                    builder: (context) => const HotelsScreen(),
+                  );
+                default:
+                  return MaterialPageRoute(
+                    builder: (context) => const ActivitiesScreen(),
+                  );
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }

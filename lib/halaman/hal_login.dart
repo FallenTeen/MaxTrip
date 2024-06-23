@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maxtrip/components/loginbutton.dart';
 import 'package:maxtrip/components/logintextfield.dart';
-import 'package:maxtrip/halaman/hal_utama.dart';
-import 'package:maxtrip/halaman/hal_utama.dart';
-import 'package:maxtrip/components/pesan_error.dart'; // Import HalHome widget
+import 'package:maxtrip/components/pesan_error.dart';
+import 'package:maxtrip/halaman/mainpage.dart'; // Import HalHome widget
 
 class HalLogin extends StatelessWidget {
   HalLogin({Key? key}) : super(key: key); // Fix constructor syntax
@@ -24,7 +23,7 @@ class HalLogin extends StatelessWidget {
       Future.delayed(Duration(seconds: 2), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HalUtama()),
+          MaterialPageRoute(builder: (context) => MainPage()),
         );
       });
     } on FirebaseAuthException catch (e) {
