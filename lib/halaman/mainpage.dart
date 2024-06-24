@@ -51,7 +51,7 @@ class _MainPageState extends State<MainPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Hidden Treasures of Italy',
+              'Hidden Treasures of Banyumas',
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                     fontSize: 65,
                     fontWeight: FontWeight.bold,
