@@ -126,58 +126,58 @@ class HalLogin extends StatelessWidget {
     }
   }
 
-  Future<void> signInWithFacebook(BuildContext context) async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-      if (result.status == LoginStatus.success) {
-        final AccessToken accessToken = result.accessToken!;
-        final AuthCredential credential =
-            FacebookAuthProvider.credential(accessToken.token);
-        await FirebaseAuth.instance.signInWithCredential(credential);
-        _showSuccessDialog(context);
-        Future.delayed(Duration(seconds: 2), () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => MainPage()),
-          );
-        });
-      } else {
-        print('Error: ${result.message}');
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Login Failed'),
-            content: Text('Failed to sign in with Facebook: ${result.message}'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error: $e');
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Login Failed'),
-          content: Text('Failed to sign in with Facebook: $e'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
-    }
-  }
+  // Future<void> signInWithFacebook(BuildContext context) async {
+  //   try {
+  //     final LoginResult result = await FacebookAuth.instance.login();
+  //     if (result.status == LoginStatus.success) {
+  //       final AccessToken accessToken = result.accessToken!;
+  //       final AuthCredential credential =
+  //           FacebookAuthProvider.credential(accessToken.token);
+  //       await FirebaseAuth.instance.signInWithCredential(credential);
+  //       _showSuccessDialog(context);
+  //       Future.delayed(Duration(seconds: 2), () {
+  //         Navigator.pushReplacement(
+  //           context,
+  //           MaterialPageRoute(builder: (context) => MainPage()),
+  //         );
+  //       });
+  //     } else {
+  //       print('Error: ${result.message}');
+  //       showDialog(
+  //         context: context,
+  //         builder: (context) => AlertDialog(
+  //           title: Text('Login Failed'),
+  //           content: Text('Failed to sign in with Facebook: ${result.message}'),
+  //           actions: [
+  //             TextButton(
+  //               onPressed: () {
+  //                 Navigator.of(context).pop();
+  //               },
+  //               child: Text('OK'),
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     }
+  //   } catch (e) {
+  //     print('Error: $e');
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => AlertDialog(
+  //         title: Text('Login Failed'),
+  //         content: Text('Failed to sign in with Facebook: $e'),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: Text('OK'),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -267,7 +267,7 @@ class HalLogin extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => signInWithFacebook(context),
+                          //   onTap: () => signInWithFacebook(context),
                           child: Image.asset(
                             'lib/images/facebook.png',
                             width: 50,

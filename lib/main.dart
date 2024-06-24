@@ -2,9 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:maxtrip/firebase_options.dart';
 import 'package:maxtrip/halaman/authpage.dart';
-import 'package:maxtrip/halaman/hal_utama.dart';
-import 'package:maxtrip/halaman/mainpage.dart';
-import 'halaman/hal_login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HalLogin(),
+      home: AuthPage(),
     );
   }
 }
