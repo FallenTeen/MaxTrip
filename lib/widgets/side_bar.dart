@@ -24,7 +24,7 @@ class _SideBarState extends State<SideBar> {
     {'title': 'Planning', 'routeName': '/planning'},
   ];
 
-  int sideBarIndex = 0;
+  int sideBarIndex = 3;
 
   @override
   Widget build(BuildContext context) {

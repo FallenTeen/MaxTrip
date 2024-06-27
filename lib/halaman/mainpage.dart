@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maxtrip/screens/hotels_screen.dart';
 import 'package:maxtrip/screens/activities_screen.dart';
+import 'package:maxtrip/screens/restoran_screen.dart';
 import 'package:maxtrip/widgets/side_bar.dart';
 
 class MainPage extends StatefulWidget {
@@ -114,6 +115,10 @@ class _MainPageState extends State<MainPage> {
                 case HotelsScreen.routeName:
                   return MaterialPageRoute(
                     builder: (context) => const HotelsScreen(),
+                  );
+                case RestaurantsScreen.routeName:
+                  return MaterialPageRoute(
+                    builder: (context) => const RestaurantsScreen(),
                   );
                 default:
                   return MaterialPageRoute(

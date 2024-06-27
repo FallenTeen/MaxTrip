@@ -6,7 +6,7 @@ import '../models/restoran_model.dart';
 import '../widgets/custom_header.dart';
 
 class RestaurantsScreen extends StatelessWidget {
-  const RestaurantsScreen({Key? key}) : super(key: key);
+  const RestaurantsScreen({Key? key});
 
   static const routeName = '/restaurants';
 
