@@ -71,6 +71,10 @@ class HalLogin extends StatelessWidget {
         ),
       ),
     );
+
+    Future.delayed(Duration(seconds: 1), () {
+      Navigator.of(context).pop();
+    });
   }
 
   String _getErrorMessage(String code) {

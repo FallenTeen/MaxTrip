@@ -29,7 +29,7 @@ class _SideBarState extends State<SideBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.20,
+      width: widget.width * 0.13,
       color: Color.fromARGB(255, 16, 138, 204),
       child: Column(
         children: [
