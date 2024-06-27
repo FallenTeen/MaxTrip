@@ -40,7 +40,7 @@ class Activity {
       id: '3',
       title: 'The Village Purwokerto',
       description:
-          'The Village adalah sebuah wisata kota yang menghadirkan taman publik seluas 2.5 hektar di tengah Karisidenan Banyumas.',
+          'https://dolanbanyumas.banyumaskab.go.id/objek_wisata/detail?o=the-village-purwokerto',
       imageUrl:
           'https://dolanbanyumas.banyumaskab.go.id/assets/gambar_objek/.jpeg',
       price: 10.000,

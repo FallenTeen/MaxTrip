@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'activity_details_screen.dart';
+import 'restoran_details_screen.dart';
 
-import '../models/activity_model.dart';
+import '../models/restoran_model.dart';
 import '../widgets/custom_header.dart';
 
-class ActivitiesScreen extends StatelessWidget {
-  const ActivitiesScreen({Key? key}) : super(key: key);
+class RestaurantsScreen extends StatelessWidget {
+  const RestaurantsScreen({Key? key}) : super(key: key);
 
-  static const routeName = '/planning';
+  static const routeName = '/restaurants';
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    List<Activity> activities = Activity.activities;
+    List<Restaurant> restaurants = Restaurant.restaurants;
 
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50),
-          const CustomHeader(title: 'Wisata'),
-          _ActivitiesMasonryGrid(
+          const CustomHeader(title: 'Restoran Ok'),
+          _RestaurantsMasonryGrid(
             width: width,
-            activities: activities,
+            restaurants: restaurants,
           ),
         ],
       ),
@@ -31,17 +31,17 @@ class ActivitiesScreen extends StatelessWidget {
   }
 }
 
-class _ActivitiesMasonryGrid extends StatelessWidget {
-  const _ActivitiesMasonryGrid({
+class _RestaurantsMasonryGrid extends StatelessWidget {
+  const _RestaurantsMasonryGrid({
     Key? key,
     this.masonryCardHeights = const [200, 250, 300],
     required this.width,
-    required this.activities,
+    required this.restaurants,
   }) : super(key: key);
 
   final List<double> masonryCardHeights;
   final double width;
-  final List<Activity> activities;
+  final List<Restaurant> restaurants;
 
   @override
   Widget build(BuildContext context) {
@@ -49,45 +49,40 @@ class _ActivitiesMasonryGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(10.0),
-      itemCount: activities.length,
+      itemCount: restaurants.length,
       crossAxisCount: 2,
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
       itemBuilder: (context, index) {
-        Activity activity = activities[index];
-        return _buildActivityCard(
+        Restaurant restaurant = restaurants[index];
+        return _buildRestaurantCard(
           context,
-          activity,
+          restaurant,
           index,
         );
       },
     );
   }
 
-  InkWell _buildActivityCard(
+  InkWell _buildRestaurantCard(
     BuildContext context,
-    Activity activity,
+    Restaurant restaurant,
     int index,
   ) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ActivityDetailsScreen(activity: activity),
-          ),
-        );
+        // Handle restaurant card tap here
       },
       child: Column(
         children: [
           Hero(
-            tag: '${activity.id}_${activity.title}',
+            tag: '${restaurant.id}_${restaurant.name}',
             child: Container(
               height: masonryCardHeights[index % 3],
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
                 image: DecorationImage(
-                  image: NetworkImage(activity.imageUrl),
+                  image: NetworkImage(restaurant.imageUrl),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [
@@ -115,7 +110,7 @@ class _ActivitiesMasonryGrid extends StatelessWidget {
               ],
             ),
             child: Text(
-              activity.title,
+              restaurant.name,
               maxLines: 3,
               style: Theme.of(context)
                   .textTheme
