@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'restoran_details_screen.dart';
+import 'restoran_details_screen.dart'; // Pastikan import yang sesuai dengan struktur aplikasi Anda
 
-import '../models/restoran_model.dart';
-import '../widgets/custom_header.dart';
+import '../models/restoran_model.dart'; // Sesuaikan dengan struktur model Anda
+import '../widgets/custom_header.dart'; // Sesuaikan dengan lokasi widget Anda
 
 class RestaurantsScreen extends StatelessWidget {
-  const RestaurantsScreen({Key? key});
+  const RestaurantsScreen({Key? key}) : super(key: key);
 
   static const routeName = '/restaurants';
 
@@ -20,7 +20,7 @@ class RestaurantsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50),
-          const CustomHeader(title: 'Restoran Ok'),
+          const CustomHeader(title: 'Restoran Indo'), // Ganti judul sesuai kebutuhan
           _RestaurantsMasonryGrid(
             width: width,
             restaurants: restaurants,
@@ -71,7 +71,12 @@ class _RestaurantsMasonryGrid extends StatelessWidget {
   ) {
     return InkWell(
       onTap: () {
-        // Handle restaurant card tap here
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RestaurantsDetailsScreen(restaurant: restaurant),
+          ),
+        );
       },
       child: Column(
         children: [

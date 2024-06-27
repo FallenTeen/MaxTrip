@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../widgets/clipped_container.dart';
-import '../models/restoran_model.dart'; // Sesuaikan dengan model yang tepat
+import '../models/restoran_model.dart'; // Pastikan sesuai dengan model yang digunakan
 
 class RestaurantsDetailsScreen extends StatelessWidget {
   const RestaurantsDetailsScreen({
@@ -15,7 +15,8 @@ class RestaurantsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(restaurant.title),
+        title: Text(
+          restaurant.title),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -76,7 +77,7 @@ class _RestaurantInformation extends StatelessWidget {
             initialRating: restaurant.rating,
             minRating: 0,
             direction: Axis.horizontal,
-            allowHalfRating: true,
+            allowHalfRating: true, // Jika diperlukan rating setengah bintang
             itemCount: 5,
             itemSize: 20,
             itemBuilder: (context, _) => const Icon(
@@ -84,7 +85,7 @@ class _RestaurantInformation extends StatelessWidget {
               color: Colors.amber,
             ),
             onRatingUpdate: (rating) {
-              // Fungsi callback jika rating diubah
+              // Callback saat rating diubah
             },
           ),
           const SizedBox(height: 20),

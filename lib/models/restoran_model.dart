@@ -26,7 +26,7 @@ class Restaurant {
     ),
     Restaurant(
       id: '2',
-      name: 'Nikmati Sejuknya Limpakuwus',
+      name: 'Warung Soto Sokaraja',
       description: 'Hutan Pinus Limpakuwus tidak seperti hutan lainnya yang mungkin sering terasa menyeramkan.',
       imageUrl: 'https://dolanbanyumas.banyumaskab.go.id/assets/gambar_objek/hutan-pinus-limpakuwus.jpg',
       price: 15000,
@@ -90,6 +90,6 @@ class Restaurant {
     ),
   ];
 
-  get title => null;
+  String get title => name;
 
 }
