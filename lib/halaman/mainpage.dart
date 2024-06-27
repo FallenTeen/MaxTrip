@@ -81,9 +81,9 @@ class _MainPageState extends State<MainPage> {
                               return MaterialPageRoute(
                                 builder: (context) => const ActivitiesScreen(),
                               );
-                            case HotelsScreen.routeName:
+                            case HotelScreen.routeName:
                               return MaterialPageRoute(
-                                builder: (context) => const HotelsScreen(),
+                                builder: (context) => const HotelScreen(),
                               );
                             case RestaurantsScreen.routeName:
                               return MaterialPageRoute(
