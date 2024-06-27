@@ -6,11 +6,13 @@ class SideBar extends StatefulWidget {
     required this.width,
     required this.height,
     required this.navigator,
+    required this.onHide,
   }) : super(key: key);
 
   final double width;
   final double height;
   final GlobalKey<NavigatorState> navigator;
+  final VoidCallback onHide;
 
   @override
   State<SideBar> createState() => _SideBarState();
@@ -24,7 +26,7 @@ class _SideBarState extends State<SideBar> {
     {'title': 'Planning', 'routeName': '/planning'},
   ];
 
-  int sideBarIndex = 3;
+  int sideBarIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +71,13 @@ class _SideBarState extends State<SideBar> {
               );
             },
           ),
+          const Spacer(),
+          IconButton(
+            onPressed: widget.onHide,
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            tooltip: 'Hide Sidebar',
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );
