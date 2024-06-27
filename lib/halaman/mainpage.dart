@@ -14,28 +14,93 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
   bool _isOnboarding = false;
-  bool _isSidebarVisible = true;
+  bool _isSideBarOpen = true;
 
   @override
   void initState() {
     super.initState();
-    // Setel _isOnboarding ke false saat inisialisasi
     _isOnboarding = false;
   }
 
   void _toggleSidebar() {
     setState(() {
-      _isSidebarVisible = !_isSidebarVisible;
+      _isSideBarOpen = !_isSideBarOpen;
     });
+  }
+
+  void _handleBackButton() {
+    // Panggil Navigator.pop untuk kembali satu halaman
+    Navigator.pop(context);
+  }
+
+  void _handleSlideRight() {
+    // Menampilkan sidebar ketika geser ke kanan
+    if (!_isSideBarOpen) {
+      _toggleSidebar();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF5EDDC),
-      body: _isOnboarding
-          ? _buildOnboarding(context)
-          : _buildMainContent(context),
+    return WillPopScope(
+      onWillPop: () async {
+        // Mencegah aplikasi keluar saat tombol kembali ditekan
+        if (!_isSideBarOpen) {
+          _toggleSidebar();
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF5EDDC),
+        body: _isOnboarding
+            ? _buildOnboarding(context)
+            : GestureDetector(
+                onHorizontalDragEnd: (details) {
+                  // Memproses gestur slide ke kanan untuk menampilkan sidebar
+                  if (details.primaryVelocity! > 0) {
+                    _handleSlideRight();
+                  }
+                },
+                child: Row(
+                  children: [
+                    if (_isSideBarOpen)
+                      SideBar(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        navigator: _navigatorKey,
+                        onHide: _toggleSidebar,
+                      ),
+                    Expanded(
+                      child: Navigator(
+                        key: _navigatorKey,
+                        initialRoute: ActivitiesScreen.routeName,
+                        onGenerateRoute: (settings) {
+                          switch (settings.name) {
+                            case ActivitiesScreen.routeName:
+                              return MaterialPageRoute(
+                                builder: (context) => const ActivitiesScreen(),
+                              );
+                            case HotelsScreen.routeName:
+                              return MaterialPageRoute(
+                                builder: (context) => const HotelsScreen(),
+                              );
+                            case RestaurantsScreen.routeName:
+                              return MaterialPageRoute(
+                                builder: (context) => const RestaurantsScreen(),
+                              );
+                            default:
+                              return MaterialPageRoute(
+                                builder: (context) => const ActivitiesScreen(),
+                              );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+      ),
     );
   }
 
@@ -98,53 +163,6 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildMainContent(BuildContext context) {
-    return Row(
-      children: [
-        if (_isSidebarVisible)
-          SideBar(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            navigator: _navigatorKey,
-            onHide: _toggleSidebar,
-          ),
-        Expanded(
-          child: GestureDetector(
-            onHorizontalDragUpdate: (details) {
-              if (details.primaryDelta! > 10) {
-                _toggleSidebar();
-              }
-            },
-            child: Navigator(
-              key: _navigatorKey,
-              initialRoute: ActivitiesScreen.routeName,
-              onGenerateRoute: (settings) {
-                switch (settings.name) {
-                  case ActivitiesScreen.routeName:
-                    return MaterialPageRoute(
-                      builder: (context) => const ActivitiesScreen(),
-                    );
-                  case HotelsScreen.routeName:
-                    return MaterialPageRoute(
-                      builder: (context) => const HotelsScreen(),
-                    );
-                  case RestaurantsScreen.routeName:
-                    return MaterialPageRoute(
-                      builder: (context) => const RestaurantsScreen(),
-                    );
-                  default:
-                    return MaterialPageRoute(
-                      builder: (context) => const ActivitiesScreen(),
-                    );
-                }
-              },
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
