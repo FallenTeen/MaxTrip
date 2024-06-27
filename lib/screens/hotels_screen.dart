@@ -19,7 +19,7 @@ class HotelScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 50),
-            const CustomHeader(title: 'Wisata'),
+            const CustomHeader(title: 'Hotel'),
             _HotelsMasonryGrid(
               width: width,
               hotels: hotels,
