@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maxtrip/screens/HomeScreen.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({
@@ -36,6 +37,18 @@ class _SideBarState extends State<SideBar> {
       child: Column(
         children: [
           SizedBox(height: widget.height * 0.05),
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.white),
+            tooltip: 'Home',
+            onPressed: () {
+              setState(() {
+                Navigator.push(
+                 context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              });
+            },
+          ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: menu.length,
