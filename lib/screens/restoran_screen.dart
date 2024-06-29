@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'restoran_details_screen.dart'; // Pastikan import yang sesuai dengan struktur aplikasi Anda
-
 import '../models/restoran_model.dart'; // Sesuaikan dengan struktur model Anda
 import '../widgets/custom_header.dart'; // Sesuaikan dengan lokasi widget Anda
 
@@ -15,15 +13,17 @@ class RestaurantsScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     List<Restaurant> restaurants = Restaurant.restaurants;
 
-    return SingleChildScrollView(
-      child: Column(
+    return Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50),
           const CustomHeader(title: 'Restoran Indo'), // Ganti judul sesuai kebutuhan
-          _RestaurantsMasonryGrid(
-            width: width,
-            restaurants: restaurants,
+          Expanded(
+            child: _RestaurantsGrid(
+              width: width,
+              restaurants: restaurants,
+            ),
           ),
         ],
       ),
@@ -31,43 +31,30 @@ class RestaurantsScreen extends StatelessWidget {
   }
 }
 
-class _RestaurantsMasonryGrid extends StatelessWidget {
-  const _RestaurantsMasonryGrid({
+class _RestaurantsGrid extends StatelessWidget {
+  const _RestaurantsGrid({
     Key? key,
-    this.masonryCardHeights = const [200, 250, 300],
     required this.width,
     required this.restaurants,
   }) : super(key: key);
 
-  final List<double> masonryCardHeights;
   final double width;
   final List<Restaurant> restaurants;
 
   @override
   Widget build(BuildContext context) {
-    return MasonryGridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+    return GridView.count(
       padding: const EdgeInsets.all(10.0),
-      itemCount: restaurants.length,
       crossAxisCount: 2,
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
-      itemBuilder: (context, index) {
-        Restaurant restaurant = restaurants[index];
-        return _buildRestaurantCard(
-          context,
-          restaurant,
-          index,
-        );
-      },
+      children: restaurants.map((restaurant) => _buildRestaurantCard(context, restaurant)).toList(),
     );
   }
 
   InkWell _buildRestaurantCard(
     BuildContext context,
     Restaurant restaurant,
-    int index,
   ) {
     return InkWell(
       onTap: () {
@@ -78,52 +65,80 @@ class _RestaurantsMasonryGrid extends StatelessWidget {
           ),
         );
       },
-      child: Column(
-        children: [
-          Hero(
-            tag: '${restaurant.id}_${restaurant.name}',
-            child: Container(
-              height: masonryCardHeights[index % 3],
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                image: DecorationImage(
-                  image: NetworkImage(restaurant.imageUrl),
-                  fit: BoxFit.cover,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 10.0,
-                    offset: Offset(0, 5),
+      child: Container(
+        height: 300,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Stack(
+          children: [
+            Hero(
+              tag: '${restaurant.id}_${restaurant.name}',
+              child: Container(
+                height: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  image: DecorationImage(
+                    image: NetworkImage(restaurant.imageUrl),
+                    fit: BoxFit.cover,
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 5.0,
-                  offset: Offset(0, 2),
+            Positioned(
+              top: 8,
+              left: 8,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                decoration: BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ],
+                child: Row(
+                  children: [
+                    const Icon(Icons.star, color: Colors.yellow, size: 16),
+                    const SizedBox(width: 4),
+                    Text(
+                      restaurant.rating.toString(),
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            child: Text(
-              restaurant.name,
-              maxLines: 3,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodySmall!
-                  .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: const BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(15.0),
+                    bottomRight: Radius.circular(15.0),
+                  ),
+                ),
+                child: Text(
+                  restaurant.name,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -91,5 +91,6 @@ class Restaurant {
   ];
 
   String get title => name;
+  
 
 }
