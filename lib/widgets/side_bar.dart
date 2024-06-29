@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maxtrip/screens/HomeScreen.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({
@@ -41,7 +42,10 @@ class _SideBarState extends State<SideBar> {
             tooltip: 'Home',
             onPressed: () {
               setState(() {
-                 // Reset index for home
+                Navigator.push(
+                 context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
               });
             },
           ),
