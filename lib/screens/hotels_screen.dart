@@ -45,11 +45,11 @@ class _HotelsMasonryGrid extends StatelessWidget {
     return MasonryGridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(5.0),
       itemCount: hotels.length,
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
+      crossAxisCount: 1,
+      mainAxisSpacing: 3,
+      crossAxisSpacing: 3,
       itemBuilder: (context, index) {
         Hotel hotel = hotels[index];
         return _buildHotelCard(
@@ -80,75 +80,77 @@ class _HotelsMasonryGrid extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Hero(
-              tag: '${hotel.namaHotel}_${hotel.lokasi}',
-              child: Container(
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15.0),
-                    topRight: Radius.circular(15.0),
-                  ),
-                  image: DecorationImage(
-                    image: NetworkImage(hotel.gambar),
-                    fit: BoxFit.cover,
+        margin: const EdgeInsets.symmetric(vertical: 3.0),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Hero(
+                tag: '${hotel.namaHotel}_${hotel.lokasi}',
+                child: Container(
+                  height: 170,
+                  width: 170,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    image: DecorationImage(
+                      image: NetworkImage(hotel.gambar),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    hotel.namaHotel,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyLarge!
-                        .copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    hotel.lokasi,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Colors.grey),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    hotel.deskripsi,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    hotel.harga,
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      hotel.namaHotel,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      hotel.lokasi,
+                      maxLines: 3,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Colors.grey),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      hotel.deskripsi,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      hotel.harga,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                    ),
+                    const SizedBox(height: 3),
+                    Row(
+                      children: List.generate(
+                        hotel.jmlBintang,
+                        (index) => Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 15,
                         ),
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    children: List.generate(
-                      hotel.jmlBintang,
-                      (index) => Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 15,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
