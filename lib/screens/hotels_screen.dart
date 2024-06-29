@@ -111,6 +111,39 @@ class _HotelsMasonryGrid extends StatelessWidget {
                           .bodyLarge!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
+                    Row(
+                    children: hotel.fasilitas.map((facility) {
+                      IconData iconData;
+                      switch (facility) {
+                        case 'wifi':
+                          iconData = Icons.wifi;
+                          break;
+                        case 'pool':
+                          iconData = Icons.pool;
+                          break;
+                        case 'parking':
+                          iconData = Icons.local_parking;
+                          break;
+                        case 'restaurant':
+                          iconData = Icons.restaurant;
+                          break;
+                        case 'bathub':
+                          iconData = Icons.bathtub;
+                          break;
+                        case 'shower':
+                          iconData = Icons.shower;
+                          break;
+                        // Add more cases for other facilities as needed
+                        default:
+                          iconData = Icons.hotel; // Default icon
+                          break;
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: Icon(iconData, size: 16),
+                      );
+                    }).toList(),
+                  ),
                     const SizedBox(height: 3),
                     Text(
                       hotel.lokasi,
@@ -129,7 +162,7 @@ class _HotelsMasonryGrid extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      hotel.harga,
+                      'Rp ${hotel.harga}',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             fontWeight: FontWeight.bold,
                             color: Colors.green,

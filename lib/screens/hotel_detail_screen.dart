@@ -74,6 +74,39 @@ class _HotelInformation extends StatelessWidget {
                 .headlineSmall!
                 .copyWith(fontWeight: FontWeight.bold),
           ),
+          Row(
+                    children: hotel.fasilitas.map((facility) {
+                      IconData iconData;
+                      switch (facility) {
+                        case 'wifi':
+                          iconData = Icons.wifi;
+                          break;
+                        case 'pool':
+                          iconData = Icons.pool;
+                          break;
+                        case 'parking':
+                          iconData = Icons.local_parking;
+                          break;
+                        case 'restaurant':
+                          iconData = Icons.restaurant;
+                          break;
+                        case 'bathub':
+                          iconData = Icons.bathtub;
+                          break;
+                        case 'shower':
+                          iconData = Icons.shower;
+                          break;
+                        // Add more cases for other facilities as needed
+                        default:
+                          iconData = Icons.hotel; // Default icon
+                          break;
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: Icon(iconData, size: 16),
+                      );
+                    }).toList(),
+                  ),
           const SizedBox(height: 10),
           RatingBar.builder(
             initialRating: hotel.jmlBintang.toDouble(),
@@ -89,7 +122,6 @@ class _HotelInformation extends StatelessWidget {
             onRatingUpdate: (rating) {},
           ),
           const SizedBox(height: 20),
-          //icon fasilitas
           Text(
             'About',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
@@ -106,11 +138,8 @@ class _HotelInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                hotel.harga,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                'Rp ${hotel.harga}',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                 onPressed: () {
