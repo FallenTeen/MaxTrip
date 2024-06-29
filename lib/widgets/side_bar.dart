@@ -36,6 +36,15 @@ class _SideBarState extends State<SideBar> {
       child: Column(
         children: [
           SizedBox(height: widget.height * 0.05),
+          IconButton(
+            icon: const Icon(Icons.home, color: Colors.white),
+            tooltip: 'Home',
+            onPressed: () {
+              setState(() {
+                 // Reset index for home
+              });
+            },
+          ),
           ListView.builder(
             shrinkWrap: true,
             itemCount: menu.length,
