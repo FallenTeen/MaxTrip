@@ -25,6 +25,7 @@ class _SideBarState extends State<SideBar> {
     {'title': 'Hotel', 'routeName': '/hotels'},
     {'title': 'Restoran', 'routeName': '/restaurants'},
     {'title': 'Rencana', 'routeName': '/rencanas'},
+    {'title': 'Profile', 'routeName': '/profile'},
   ];
 
   int sideBarIndex = 0;

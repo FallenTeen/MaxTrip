@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:maxtrip/screens/homescreen.dart';
 import 'package:maxtrip/screens/hotels_screen.dart';
 import 'package:maxtrip/screens/activities_screen.dart';
+import 'package:maxtrip/screens/profile_screen.dart';
 import 'package:maxtrip/screens/restoran_screen.dart';
 import 'package:maxtrip/screens/rencana_screen.dart';
+import 'package:maxtrip/screens/profile_screen.dart';
 import 'package:maxtrip/widgets/side_bar.dart';
 
 class MainPage extends StatefulWidget {
@@ -94,6 +96,10 @@ class _MainPageState extends State<MainPage> {
                             case RencanaScreen.routeName:
                               return MaterialPageRoute(
                                 builder: (context) => const RencanaScreen(),
+                              );
+                            case DashboardProfile.routeName:
+                              return MaterialPageRoute(
+                                builder: (context) => DashboardProfile(),
                               );
                             default:
                               return MaterialPageRoute(
