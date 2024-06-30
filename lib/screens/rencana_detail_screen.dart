@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/clipped_container.dart';
 import '../models/rencana_model.dart';
-import '../screens/confirm_checkout_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RencanaDetailsScreen extends StatelessWidget {
   const RencanaDetailsScreen({
@@ -44,13 +44,12 @@ class RencanaDetailsScreen extends StatelessWidget {
                       backgroundColor: Colors.blue,
                       elevation: 0,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ConfirmCheckoutScreen(rencana: rencana),
-                        ),
-                      );
+                    onPressed: () async {
+                      final whatsappUrl = 'https://wa.me/+6285156208507?text=';
+                      final message =
+                          'Rencana: ${rencana.title}\nLokasi: ${rencana.location}\nTanggal: ${rencana.date}';
+                      final url = '$whatsappUrl$message';
+                      await launchUrl(Uri.parse(url));
                     },
                     child: Text('Rencanakan Sekarang'),
                   ),
