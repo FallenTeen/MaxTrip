@@ -15,18 +15,18 @@ class HotelScreen extends StatelessWidget {
     List<Hotel> hotels = Hotel.hotels;
 
     return SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 50),
-            const CustomHeader(title: 'Hotel'),
-            _HotelsMasonryGrid(
-              width: width,
-              hotels: hotels,
-            ),
-          ],
-        ),
-      );
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 50),
+          const CustomHeader(title: 'Hotel'),
+          _HotelsMasonryGrid(
+            width: width,
+            hotels: hotels,
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -71,7 +71,7 @@ class _HotelsMasonryGrid extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HotelDetailsScreen(hotel: hotel), // Halaman detail hotel jika diperlukan
+            builder: (context) => HotelDetailsScreen(hotel: hotel),
           ),
         );
       },
@@ -112,38 +112,38 @@ class _HotelsMasonryGrid extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     Row(
-                    children: hotel.fasilitas.map((facility) {
-                      IconData iconData;
-                      switch (facility) {
-                        case 'wifi':
-                          iconData = Icons.wifi;
-                          break;
-                        case 'pool':
-                          iconData = Icons.pool;
-                          break;
-                        case 'parking':
-                          iconData = Icons.local_parking;
-                          break;
-                        case 'restaurant':
-                          iconData = Icons.restaurant;
-                          break;
-                        case 'bathub':
-                          iconData = Icons.bathtub;
-                          break;
-                        case 'shower':
-                          iconData = Icons.shower;
-                          break;
-                        // Add more cases for other facilities as needed
-                        default:
-                          iconData = Icons.hotel; // Default icon
-                          break;
-                      }
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 5.0),
-                        child: Icon(iconData, size: 16),
-                      );
-                    }).toList(),
-                  ),
+                      children: hotel.fasilitas.map((facility) {
+                        IconData iconData;
+                        switch (facility) {
+                          case 'wifi':
+                            iconData = Icons.wifi;
+                            break;
+                          case 'pool':
+                            iconData = Icons.pool;
+                            break;
+                          case 'parking':
+                            iconData = Icons.local_parking;
+                            break;
+                          case 'restaurant':
+                            iconData = Icons.restaurant;
+                            break;
+                          case 'bathub':
+                            iconData = Icons.bathtub;
+                            break;
+                          case 'shower':
+                            iconData = Icons.shower;
+                            break;
+                          // Add more cases for other facilities as needed
+                          default:
+                            iconData = Icons.hotel;
+                            break;
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 5.0),
+                          child: Icon(iconData, size: 16),
+                        );
+                      }).toList(),
+                    ),
                     const SizedBox(height: 3),
                     Text(
                       hotel.lokasi,

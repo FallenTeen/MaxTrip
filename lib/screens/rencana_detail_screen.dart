@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../widgets/clipped_container.dart';
 import '../models/rencana_model.dart'; // Pastikan sesuai dengan model yang digunakan
 
