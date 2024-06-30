@@ -64,7 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '959050064681',
     projectId: 'maxtrip-a968f',
     storageBucket: 'maxtrip-a968f.appspot.com',
-    iosClientId: '959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com',
+    iosClientId:
+        '959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com',
     iosBundleId: 'com.example.maxtrip',
   );
 
@@ -74,7 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '959050064681',
     projectId: 'maxtrip-a968f',
     storageBucket: 'maxtrip-a968f.appspot.com',
-    iosClientId: '959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com',
+    iosClientId:
+        '959050064681-is4vqjj9803japbm0e87j1ci2sm6krur.apps.googleusercontent.com',
     iosBundleId: 'com.example.maxtrip',
   );
 
