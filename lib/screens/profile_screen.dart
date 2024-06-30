@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maxtrip/halaman/authpage.dart';
+import 'package:maxtrip/screens/rencana_screen.dart';
 
 class DashboardProfile extends StatelessWidget {
   static const routeName = '/profile';
@@ -87,16 +88,16 @@ class DashboardProfile extends StatelessWidget {
                       color: Colors.white70,
                     ),
                   ),
-                  Text(
-                    "0 Posts",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white70,
-                    ),
-                  ),
                   SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                RencanaScreen()), // Ganti dengan ProfileScreen
+                      );
+                    },
                     child: Text("View My Profile"),
                     style: ElevatedButton.styleFrom(
                       minimumSize:
