@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:maxtrip/screens/homescreen.dart';
+// import 'package:maxtrip/screens/homescreen.dart';
 import 'package:maxtrip/screens/hotels_screen.dart';
 import 'package:maxtrip/screens/activities_screen.dart';
 import 'package:maxtrip/screens/profile_screen.dart';
@@ -77,7 +77,7 @@ class _MainPageState extends State<MainPage> {
                     Expanded(
                       child: Navigator(
                         key: _navigatorKey,
-                        initialRoute: HomeScreen.routeName,
+                        initialRoute: DashboardProfile.routeName,
                         onGenerateRoute: (settings) {
                           switch (settings.name) {
                             case ActivitiesScreen.routeName:
@@ -102,7 +102,7 @@ class _MainPageState extends State<MainPage> {
                               );
                             default:
                               return MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
+                                builder: (context) => DashboardProfile(),
                               );
                           }
                         },
