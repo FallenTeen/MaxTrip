@@ -96,7 +96,7 @@ class _RencanaScreenState extends State<RencanaScreen> {
         onPressed: () {
           // Contoh untuk menambah rencana baru
           Rencana newRencana = Rencana(
-            id: (rencanas.length + 1).toString(),
+            id: (rencanas.length + 1),
             title: 'Rencana Baru',
             description: 'test',
             date: 'aa',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:maxtrip/models/rencana_model.dart';
 import 'package:maxtrip/screens/rencana_screen.dart';
 import '../models/hotel_model.dart';
 import '../widgets/clipped_container.dart';
@@ -151,7 +152,18 @@ class _HotelInformation extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Handle 'Buat Rencana' button press
+                  final newRencana = Rencana(
+                    id: Rencana.getNextId(),
+                    jenisTempat: 'Hotel',
+                    title: hotel.namaHotel,
+                    description: hotel.deskripsi,
+                    imageUrl: hotel.gambar,
+                    date: DateTime.now().toString().split(' ')[0],
+                    location: hotel.lokasi,
+                  );
+
+                  Rencana.addRencana(newRencana);
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(

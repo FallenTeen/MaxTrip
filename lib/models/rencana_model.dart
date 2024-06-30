@@ -1,5 +1,5 @@
 class Rencana {
-  final String id;
+  final int id;
   final String jenisTempat;
   final String title;
   final String description;
@@ -7,7 +7,7 @@ class Rencana {
   final String date;
   final String location;
 
-  const Rencana({
+  Rencana({
     required this.id,
     required this.jenisTempat,
     required this.title,
@@ -17,9 +17,9 @@ class Rencana {
     required this.location,
   });
 
-  static const List<Rencana> rencanas = [
+  static List<Rencana> rencanas = [
     Rencana(
-      id: '1',
+      id: 1,
       jenisTempat: 'Restoran',
       title: 'Pringsewu Baturraden',
       description: 'Menyediakan berbagai makanan dengan pemandangan indah.',
@@ -29,7 +29,7 @@ class Rencana {
       location: 'Baturraden, Banyumas',
     ),
     Rencana(
-      id: '2',
+      id: 2,
       jenisTempat: 'Restoran',
       title: 'Warung Soto Sokaraja',
       description: 'Menyajikan soto khas Sokaraja dengan cita rasa yang lezat.',
@@ -39,7 +39,7 @@ class Rencana {
       location: 'Sokaraja, Banyumas',
     ),
     Rencana(
-      id: '3',
+      id: 3,
       jenisTempat: 'Wisata',
       title: 'Taman Panemon',
       description:
@@ -50,7 +50,7 @@ class Rencana {
       location: 'Banyumas',
     ),
     Rencana(
-      id: '4',
+      id: 4,
       jenisTempat: 'Wisata',
       title: 'Lokawisata Baturraden',
       description: 'Wisata alam dengan udara sejuk dan panorama yang memukau.',
@@ -60,7 +60,7 @@ class Rencana {
       location: 'Baturraden, Banyumas',
     ),
     Rencana(
-      id: '5',
+      id: 5,
       jenisTempat: 'Hotel',
       title: 'Lembu Benggolo Farm & Resort',
       description:
@@ -71,4 +71,12 @@ class Rencana {
       location: 'Banyumas',
     ),
   ];
+
+  static int getNextId() {
+    return rencanas.isNotEmpty ? rencanas.last.id + 1 : 1;
+  }
+
+  static void addRencana(Rencana rencana) {
+    rencanas.add(rencana);
+  }
 }
