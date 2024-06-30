@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:maxtrip/screens/confirm_checkout_screen.dart';
+
 class Rencana {
   final int id;
   final String jenisTempat;
@@ -78,5 +81,18 @@ class Rencana {
 
   static void addRencana(Rencana rencana) {
     rencanas.add(rencana);
+  }
+
+  static void removeRencana(int id) {
+    rencanas.removeWhere((rencana) => rencana.id == id);
+  }
+
+  void checkout(BuildContext context) {
+    // Implementasi fungsi checkout
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ConfirmCheckoutScreen(rencana: this),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/clipped_container.dart';
-import '../models/rencana_model.dart'; // Pastikan sesuai dengan model yang digunakan
+import '../models/rencana_model.dart';
+import '../screens/confirm_checkout_screen.dart';
 
 class RencanaDetailsScreen extends StatelessWidget {
   const RencanaDetailsScreen({
@@ -16,14 +17,48 @@ class RencanaDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(rencana.title),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _RencanaImage(rencana: rencana),
-          Expanded(
-            child: _RencanaInformation(rencana: rencana),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _RencanaImage(rencana: rencana),
+            _RencanaInformation(rencana: rencana),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ConfirmCheckoutScreen(rencana: rencana),
+                    ),
+                  );
+                },
+                child: Text('Checkout'),
+              ),
+              SizedBox(width: 16),
+              IconButton(
+                onPressed: () {
+                  Rencana.removeRencana(rencana.id);
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Rencana dihapus')),
+                  );
+                },
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -70,21 +105,21 @@ class _RencanaInformation extends StatelessWidget {
             rencana.title,
             style: Theme.of(context)
                 .textTheme
-                .headlineSmall!
+                .titleLarge!
                 .copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
             'Lokasi: ${rencana.location}',
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 20),
           Text(
             'Tentang',
             style: Theme.of(context)
                 .textTheme
-                .bodyLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
@@ -92,7 +127,7 @@ class _RencanaInformation extends StatelessWidget {
             textAlign: TextAlign.justify,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const Spacer(),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -100,41 +135,8 @@ class _RencanaInformation extends StatelessWidget {
                 rencana.date,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Fungsi untuk menangani tombol 'Checkout'
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 16, 138, 204),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                    ),
-                    child: Text(
-                      'Checkout',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  IconButton(
-                    onPressed: () {
-                      // Fungsi untuk menangani tombol 'Hapus'
-                    },
-                    icon: Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                      size: 30,
-                    ),
-                  ),
-                ],
+                    .titleSmall!
+                    .copyWith(fontWeight: FontWeight.bold),
               ),
             ],
           ),
