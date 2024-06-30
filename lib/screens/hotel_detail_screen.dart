@@ -18,14 +18,14 @@ class HotelDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(hotel.namaHotel),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _HotelImage(hotel: hotel),
-          Expanded(
-            child: _HotelInformation(hotel: hotel),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _HotelImage(hotel: hotel),
+            _HotelInformation(hotel: hotel),
+          ],
+        ),
       ),
     );
   }
@@ -138,7 +138,7 @@ class _HotelInformation extends StatelessWidget {
             textAlign: TextAlign.justify,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const Spacer(),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
