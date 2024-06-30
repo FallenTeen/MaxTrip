@@ -23,7 +23,9 @@ class RestaurantsDetailsScreen extends StatelessWidget {
         children: [
           _RestaurantImage(restaurant: restaurant),
           Expanded(
-            child: _RestaurantInformation(restaurant: restaurant),
+            child: SingleChildScrollView(
+              child: _RestaurantInformation(restaurant: restaurant),
+            ),
           ),
         ],
       ),
@@ -99,7 +101,7 @@ class _RestaurantInformation extends StatelessWidget {
             textAlign: TextAlign.justify,
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const Spacer(),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
