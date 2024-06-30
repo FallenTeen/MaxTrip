@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../widgets/clipped_container.dart';
-import '../models/restoran_model.dart'; // Pastikan sesuai dengan model yang digunakan
+import '../models/restoran_model.dart'; // Import your restaurant model here
+import '../models/rencana_model.dart'; // Import your rencana model here
+import '../screens/rencana_screen.dart'; // Import your rencana screen here
 
 class RestaurantsDetailsScreen extends StatelessWidget {
   const RestaurantsDetailsScreen({
@@ -12,12 +14,22 @@ class RestaurantsDetailsScreen extends StatelessWidget {
   final Restaurant restaurant;
 
   void _handlePlanButtonPress(BuildContext context) {
-    // Fungsi untuk menangani tombol 'Buat Rencana'
-    // Ganti dengan navigasi ke halaman rencana
+    final newRencana = Rencana(
+      id: Rencana.getNextId(),
+      jenisTempat: 'Restoran',
+      title: restaurant.title,
+      description: restaurant.description,
+      imageUrl: restaurant.imageUrl,
+      date: DateTime.now().toString().split(' ')[0],
+      location: "",
+    );
+
+    Rencana.addRencana(newRencana);
+
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PlanScreen(restaurant: restaurant),
+        builder: (context) => RencanaScreen(),
       ),
     );
   }
@@ -32,7 +44,7 @@ class RestaurantsDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _RestaurantImage(restaurant: restaurant),
+            _RestaurantImage(restaurant: restaurant), // Call _RestaurantImage widget here
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: _RestaurantInformation(
@@ -86,14 +98,14 @@ class _RestaurantInformation extends StatelessWidget {
       children: [
         Text(
           restaurant.title,
-          style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         RatingBar.builder(
           initialRating: restaurant.rating,
           minRating: 0,
           direction: Axis.horizontal,
-          allowHalfRating: true, // Jika diperlukan rating setengah bintang
+          allowHalfRating: true,
           itemCount: 5,
           itemSize: 20,
           itemBuilder: (context, _) => const Icon(
@@ -101,19 +113,19 @@ class _RestaurantInformation extends StatelessWidget {
             color: Colors.amber,
           ),
           onRatingUpdate: (rating) {
-            // Callback saat rating diubah
+            // Handle rating update
           },
         ),
         const SizedBox(height: 20),
         Text(
           'About',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         Text(
           restaurant.description,
           textAlign: TextAlign.justify,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
         Row(
@@ -121,7 +133,7 @@ class _RestaurantInformation extends StatelessWidget {
           children: [
             Text(
               '\Rp ${restaurant.price}',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
             ),
             ElevatedButton(
               onPressed: onPlanButtonPressed,
@@ -133,33 +145,12 @@ class _RestaurantInformation extends StatelessWidget {
               ),
               child: Text(
                 'Buat Rencana',
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.white),
               ),
             ),
           ],
         ),
       ],
-    );
-  }
-}
-
-class PlanScreen extends StatelessWidget {
-  final Restaurant restaurant;
-
-  const PlanScreen({
-    Key? key,
-    required this.restaurant,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Rencana untuk ${restaurant.title}'),
-      ),
-      body: Center(
-        child: Text('Telah dibuat Rencana untuk mengunjungi ${restaurant.title}'),
-      ),
     );
   }
 }
