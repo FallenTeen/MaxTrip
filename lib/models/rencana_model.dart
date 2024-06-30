@@ -24,22 +24,23 @@ class Rencana {
     Rencana(
       id: 1,
       jenisTempat: 'Restoran',
-      title: 'Pringsewu Baturraden',
-      description: 'Menyediakan berbagai makanan dengan pemandangan indah.',
+      title: 'Gubug Makan Mang Engking',
+      description:  'Berkunjung ke Gubug Makan Mang Engking merupakan salah satu rekomendasi restoran khas Sunda yang bernuansa ala pedesaan. Suasana tersebut bisa dilihat dari interior dan eksterior bangunan yang sangat unik, mulai dari sawah yang ada di sekelilingnya, kolam ikan, gasebo atau gubug ciri khas Mang Engking. di gubug itulah, pengunjung akan dihidangkan oleh makanan yang telah dipesan. Begitu menariknya restoran ini, maka pengunjung tidak akan lupa untuk mengabadikan momen dan banyaknya spot foto instagramable disini membuat pengunjung happy dan tertarik untuk berkunjung kembali. Tempat yang biasa dijadikan untuk meeting kantor atau acara keluarga ini memiliki menu spesial seperti ikan dan seafood,  serta jenis minuman tradisional sampai modern juga tersedia disini. Gubug Makan Mang Engking merupakan rekomendasi terbaik sebagai restoran yang unik dan menarik.',
       imageUrl:
-          'https://www.kemutuglor-baturraden.desa.id/wp-content/uploads/Lokasi-Kawasan-Hutan-Lindung-Kebun-Raya-Baturraden-kabupaten-Banyumas.webp',
+          'https://dolanbanyumas.banyumaskab.go.id/assets/gambar_objek/gubug-makan-mang-engking.jpg',
       date: '2024-07-01',
-      location: 'Baturraden, Banyumas',
+      location: 'Gurame bakar, Gurame goreng asam manis, Ayam sambal korek',
     ),
     Rencana(
       id: 2,
       jenisTempat: 'Restoran',
-      title: 'Warung Soto Sokaraja',
-      description: 'Menyajikan soto khas Sokaraja dengan cita rasa yang lezat.',
+      title: 'Bebek Haji Slamet',
+      description:
+          'Bosen makan makanan itu itu aja ? Nih ada tempat makan legendaris yang menjaga standarisasi rasanya, mana lagi kalau bukan Bebek Goreng H Slamet, dengan aneka banyak macam menu bebek goreng, tidak hanya bebek goreng, bebek bakarnya pun tidak kalah enak loh. Recomended banget deh pokoknya buat makan bareng keluarga, teman atau kolega. Tunggu apa lagi, yuk segera merapat rasakan kenikmatan olahan bebek di rumah makan bebek goreng H Slamet.',
       imageUrl:
-          'https://dolanbanyumas.banyumaskab.go.id/assets/gambar_objek/hutan-pinus-limpakuwus.jpg',
+          'https://dolanbanyumas.banyumaskab.go.id/assets/gambar_objek/bebek-h-slamet.jpg',
       date: '2024-08-15',
-      location: 'Sokaraja, Banyumas',
+      location: 'Bebek goreng, Bebek bakar, Bebek sambal hijau',
     ),
     Rencana(
       id: 3,
