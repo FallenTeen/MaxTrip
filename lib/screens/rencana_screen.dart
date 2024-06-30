@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
-import 'rencana_detail_screen.dart';
 import '../models/rencana_model.dart';
+import 'rencana_detail_screen.dart';
 
-class RencanaScreen extends StatelessWidget {
+class RencanaScreen extends StatefulWidget {
   const RencanaScreen({Key? key}) : super(key: key);
 
   static const routeName = '/rencanas';
 
   @override
-  Widget build(BuildContext context) {
-    List<Rencana> rencanas = Rencana.rencanas;
+  _RencanaScreenState createState() => _RencanaScreenState();
+}
 
+class _RencanaScreenState extends State<RencanaScreen> {
+  List<Rencana> rencanas = Rencana.rencanas;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rencana Perjalanan'),
@@ -40,7 +45,7 @@ class RencanaScreen extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: const Offset(0, 3), // changes position of shadow
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -68,12 +73,11 @@ class RencanaScreen extends StatelessWidget {
                           rencana.title,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         const SizedBox(height: 4.0),
                         Text(rencana.location),
@@ -88,19 +92,37 @@ class RencanaScreen extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Contoh untuk menambah rencana baru
+          Rencana newRencana = Rencana(
+            id: (rencanas.length + 1).toString(),
+            title: 'Rencana Baru',
+            description: 'test',
+            date: 'aa',
+            imageUrl: 'https://example.com/new.jpg',
+            location: 'Tempat Baru',
+            jenisTempat: 'Wisata',
+          );
+          setState(() {
+            rencanas.add(newRencana);
+          });
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
-}
 
-IconData _getIconForPlace(String jenisTempat) {
-  switch (jenisTempat) {
-    case 'Hotel':
-      return Icons.hotel;
-    case 'Restoran':
-      return Icons.restaurant;
-    case 'Wisata':
-      return Icons.beach_access;
-    default:
-      return Icons.place;
+  IconData _getIconForPlace(String jenisTempat) {
+    switch (jenisTempat) {
+      case 'Hotel':
+        return Icons.hotel;
+      case 'Restoran':
+        return Icons.restaurant;
+      case 'Wisata':
+        return Icons.beach_access;
+      default:
+        return Icons.place;
+    }
   }
 }
