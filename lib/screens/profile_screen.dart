@@ -165,8 +165,8 @@ class DashboardProfile extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Logout Confirmation"),
-          content: Text("Are you sure you want to logout?"),
+          title: Text("Konfirmasi Logout"),
+          content: Text("Apakah anda benar benar ingin logout?"),
           actions: [
             TextButton(
               child: Text("No"),

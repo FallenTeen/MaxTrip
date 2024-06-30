@@ -52,7 +52,7 @@ class RencanaDetailsScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text('Checkout'),
+                    child: Text('Rencanakan Sekarang'),
                   ),
                 ),
                 SizedBox(width: 16),
