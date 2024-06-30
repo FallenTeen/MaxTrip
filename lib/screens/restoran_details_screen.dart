@@ -128,6 +128,17 @@ class _RestaurantInformation extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
+        Text(
+          'Menu yang tersedia : ',
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          restaurant.menu,
+          textAlign: TextAlign.justify,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
