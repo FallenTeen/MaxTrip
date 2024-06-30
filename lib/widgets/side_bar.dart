@@ -44,10 +44,9 @@ class _SideBarState extends State<SideBar> {
             tooltip: 'Home',
             onPressed: () {
               setState(() {
-                sideBarIndex = 0; // Update sideBarIndex to 0
+                sideBarIndex = 0;
               });
-              widget.navigator.currentState!
-                  .pushNamed('/profile'); // Navigate to /profile route
+              widget.navigator.currentState!.pushNamed('/profile');
             },
           ),
           ListView.builder(
