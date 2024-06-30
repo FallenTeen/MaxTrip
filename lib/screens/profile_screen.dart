@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maxtrip/halaman/authpage.dart';
 import 'package:maxtrip/screens/rencana_screen.dart';
+import 'package:maxtrip/screens/activities_screen.dart';
+import 'package:maxtrip/screens/hotels_screen.dart';
+import 'package:maxtrip/screens/restoran_screen.dart';
 
 class DashboardProfile extends StatelessWidget {
   static const routeName = '/profile';
@@ -50,7 +53,7 @@ class DashboardProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    userName,
+                    "Hello, Welcome $userName!",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -94,68 +97,178 @@ class DashboardProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "You're our Bronze Priority",
-                    style: TextStyle(fontSize: 16),
+                  // Search bar
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    margin: EdgeInsets.only(bottom: 15),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.search, color: Colors.grey),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Search for places',
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 10),
-                  Divider(color: Colors.grey),
+                  // Discover Section
                   Text(
-                    "My Payment Options",
+                    "Discover",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 10),
-                  Card(
-                    child: ListTile(
-                      leading: Icon(Icons.credit_card),
-                      title: Text("PayLater"),
-                      subtitle: Text("Promos for new users are waiting!"),
-                      onTap: () {},
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildDiscoverCard(
+                        context,
+                        Icons.beach_access,
+                        'Wisata',
+                        ActivitiesScreen.routeName,
+                      ),
+                      _buildDiscoverCard(
+                        context,
+                        Icons.hotel,
+                        'Hotel',
+                        HotelScreen.routeName,
+                      ),
+                      _buildDiscoverCard(
+                        context,
+                        Icons.restaurant,
+                        'Restoran',
+                        RestaurantsScreen.routeName,
+                      ),
+                    ],
                   ),
-                  Card(
-                    child: ListTile(
-                      leading: Icon(Icons.account_balance_wallet),
-                      title: Text("travelokaPay"),
-                      subtitle: Text("UANGKU Balance"),
-                      onTap: () {},
-                    ),
-                  ),
-                  Card(
-                    child: ListTile(
-                      leading: Icon(Icons.account_balance),
-                      title: Text("UANGKU Balance"),
-                      subtitle: Text(
-                          "Activate now to enjoy quick and easy payments 24/7"),
-                      onTap: () {},
-                    ),
-                  ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
+                  // Special Offers Section
                   Text(
-                    "My Rewards",
+                    "Special Offers",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  Card(
-                    child: ListTile(
-                      leading: Icon(Icons.card_giftcard),
-                      title: Text("0 Points"),
-                      subtitle: Text(
-                          "Trade points for coupons and learn how to earn more!"),
-                      onTap: () {},
-                    ),
+                  SizedBox(height: 10),
+                  _buildSpecialOffers(),
+                  SizedBox(height: 20),
+                  // Recommended Places Section
+                  Text(
+                    "Recommended Places",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  Card(
-                    child: ListTile(
-                      leading: Icon(Icons.redeem),
-                      title: Text("Reward Zone"),
-                      onTap: () {},
-                    ),
-                  ),
+                  SizedBox(height: 10),
+                  _buildRecommendedPlaces(),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildDiscoverCard(
+      BuildContext context, IconData icon, String title, String routeName) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, routeName);
+        },
+        child: Card(
+          child: Container(
+            width: 100,
+            height: 100,
+            padding: EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon, size: 40, color: Colors.blue),
+                SizedBox(height: 10),
+                Text(title, style: TextStyle(fontSize: 14)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSpecialOffers() {
+    return Container(
+      height: 150,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          _buildOfferCard('Discount up to 60%!',
+              'Valid for new customers in MaxTrip', 'JALANYUK'),
+          _buildOfferCard(
+              'Extra Disc. up to 50%', 'Valid for PayLater users', 'MaxTrip'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildOfferCard(String title, String subtitle, String code) {
+    return Container(
+      width: 250,
+      margin: EdgeInsets.only(right: 10),
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+              SizedBox(height: 5),
+              Text(subtitle,
+                  style: TextStyle(fontSize: 12, color: Colors.grey)),
+              SizedBox(height: 10),
+              Text('CODE: $code',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRecommendedPlaces() {
+    return Column(
+      children: [
+        _buildPlaceCard('Beautiful Beach', 'Enjoy the sunny beach'),
+        _buildPlaceCard('Mountain Hiking', 'Experience the adventure'),
+        _buildPlaceCard('City Tours', 'Discover the city vibes'),
+      ],
+    );
+  }
+
+  Widget _buildPlaceCard(String title, String subtitle) {
+    return Card(
+      margin: EdgeInsets.only(bottom: 10),
+      child: ListTile(
+        leading: Icon(Icons.place, color: Colors.blue),
+        title: Text(title),
+        subtitle: Text(subtitle),
+        onTap: () {
+          // Navigate to place details
+        },
       ),
     );
   }
@@ -195,3 +308,5 @@ class DashboardProfile extends StatelessWidget {
     );
   }
 }
+
+void main() => runApp(MaterialApp(home: DashboardProfile()));
