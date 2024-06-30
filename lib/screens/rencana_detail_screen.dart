@@ -14,54 +14,69 @@ class RencanaDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(rencana.title),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _RencanaImage(rencana: rencana),
-            _RencanaInformation(rencana: rencana),
-          ],
+        appBar: AppBar(
+          title: Text(rencana.title),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ConfirmCheckoutScreen(rencana: rencana),
-                    ),
-                  );
-                },
-                child: Text('Checkout'),
-              ),
-              SizedBox(width: 16),
-              IconButton(
-                onPressed: () {
-                  Rencana.removeRencana(rencana.id);
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Rencana dihapus')),
-                  );
-                },
-                icon: Icon(
-                  Icons.delete,
-                  color: Colors.red,
-                ),
-              ),
+              _RencanaImage(rencana: rencana),
+              _RencanaInformation(rencana: rencana),
             ],
           ),
         ),
-      ),
-    );
+        bottomNavigationBar: BottomAppBar(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.blue,
+                  ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                      elevation: 0,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ConfirmCheckoutScreen(rencana: rencana),
+                        ),
+                      );
+                    },
+                    child: Text('Checkout'),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.red,
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Rencana.removeRencana(rencana.id);
+                      Navigator.of(context).pop();
+                      Navigator.pushReplacementNamed(context, '/rencanas');
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ));
   }
 }
 
