@@ -133,6 +133,7 @@ class _HotelInformation extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             hotel.deskripsi,
+            maxLines: 10,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.justify,
             style: Theme.of(context).textTheme.bodyLarge,
