@@ -24,7 +24,7 @@ class _SideBarState extends State<SideBar> {
     {'title': 'Wisata', 'routeName': '/activities'},
     {'title': 'Hotel', 'routeName': '/hotels'},
     {'title': 'Restoran', 'routeName': '/restaurants'},
-    {'title': 'Rencana', 'routeName': '/rencana'},
+    {'title': 'Rencana', 'routeName': '/rencanas'},
   ];
 
   int sideBarIndex = 0;
@@ -43,7 +43,7 @@ class _SideBarState extends State<SideBar> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                 context,
+                  context,
                   MaterialPageRoute(builder: (context) => HomeScreen()),
                 );
               });
