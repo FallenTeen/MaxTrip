@@ -17,12 +17,12 @@ class ActivityDetailsScreen extends StatelessWidget {
     void _handlePlanButtonPress(BuildContext context) {
     final newRencana = Rencana(
       id: Rencana.getNextId(),
-      jenisTempat: 'Restoran',
+      jenisTempat: 'Wisata',
       title: activity.title,
       description: activity.description,
       imageUrl: activity.imageUrl,
       date: DateTime.now().toString().split(' ')[0],
-      location: "",
+      location: "Banyumas",
     );
 
     Rencana.addRencana(newRencana);
