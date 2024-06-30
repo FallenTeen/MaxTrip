@@ -74,7 +74,7 @@ class DashboardProfile extends StatelessWidget {
                                 RencanaScreen()), // Ganti dengan ProfileScreen
                       );
                     },
-                    child: Text("View My Profile"),
+                    child: Text("Lihat Rencana Anda"),
                     style: ElevatedButton.styleFrom(
                       minimumSize:
                           Size(200, 40), // Set the width and height here
