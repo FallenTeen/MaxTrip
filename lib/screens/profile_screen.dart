@@ -15,37 +15,14 @@ class DashboardProfile extends StatelessWidget {
     final userEmail = user?.email ?? '';
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          decoration: InputDecoration(
-            hintText: "Search",
-            hintStyle: TextStyle(color: Colors.white),
-            border: InputBorder.none,
-          ),
-        ),
         backgroundColor: Color.fromARGB(255, 16, 138, 204),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.message),
-            onPressed: () {},
-          ),
-          PopupMenuButton<String>(
-            icon: Icon(Icons.settings),
-            onSelected: (String result) {
-              if (result == 'logout') {
-                _logout(context);
-              }
+            icon: Icon(Icons.logout, color: Colors.white),
+            onPressed: () {
+              _showLogoutConfirmationDialog(context);
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: 'logout',
-                child: Text('Logout'),
-              ),
-            ],
-          ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -69,8 +46,7 @@ class DashboardProfile extends StatelessWidget {
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.white,
-                    backgroundImage:
-                        AssetImage("lib/images/profilKaryawan.png"),
+                    backgroundImage: AssetImage("lib/images/profil.png"),
                   ),
                   SizedBox(height: 10),
                   Text(
@@ -184,8 +160,38 @@ class DashboardProfile extends StatelessWidget {
     );
   }
 
-  void _logout(BuildContext context) {
-    // Implement your logout functionality here
-    Navigator.of(context).pop(); // Example: Navigate back to login screen
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Logout Confirmation"),
+          content: Text("Are you sure you want to logout?"),
+          actions: [
+            TextButton(
+              child: Text("No"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Yes"),
+              onPressed: () {
+                _logout(context);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    await Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => AuthPage()),
+    );
   }
 }

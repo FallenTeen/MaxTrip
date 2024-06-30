@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maxtrip/screens/HomeScreen.dart';
 import 'package:maxtrip/screens/profile_screen.dart';
 
 class SideBar extends StatefulWidget {
