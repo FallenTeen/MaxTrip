@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:maxtrip/screens/rencana_screen.dart';
+import '../models/rencana_model.dart';
 import '../widgets/clipped_container.dart';
 
 import '../models/activity_model.dart';
@@ -12,6 +14,27 @@ class ActivityDetailsScreen extends StatelessWidget {
 
   final Activity activity;
 
+    void _handlePlanButtonPress(BuildContext context) {
+    final newRencana = Rencana(
+      id: Rencana.getNextId(),
+      jenisTempat: 'Restoran',
+      title: activity.title,
+      description: activity.description,
+      imageUrl: activity.imageUrl,
+      date: DateTime.now().toString().split(' ')[0],
+      location: "",
+    );
+
+    Rencana.addRencana(newRencana);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RencanaScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +46,10 @@ class ActivityDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _ActivityImage(activity: activity),
-            _ActivityInformation(activity: activity),
+            _ActivityInformation(
+              activity: activity,
+              onPlanButtonPressed: () => _handlePlanButtonPress(context),
+            ),
           ],
         ),
       ),
@@ -57,9 +83,11 @@ class _ActivityInformation extends StatelessWidget {
   const _ActivityInformation({
     Key? key,
     required this.activity,
+    required this.onPlanButtonPressed,
   }) : super(key: key);
 
   final Activity activity;
+  final VoidCallback onPlanButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +143,7 @@ class _ActivityInformation extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: onPlanButtonPressed,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
