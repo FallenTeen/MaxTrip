@@ -88,8 +88,8 @@ class _HotelsMasonryGrid extends StatelessWidget {
               Hero(
                 tag: '${hotel.namaHotel}_${hotel.lokasi}',
                 child: Container(
-                  height: 170,
-                  width: 170,
+                  height: 150,
+                  width: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
                     image: DecorationImage(
@@ -147,7 +147,7 @@ class _HotelsMasonryGrid extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       hotel.lokasi,
-                      maxLines: 3,
+                      maxLines: 2,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!

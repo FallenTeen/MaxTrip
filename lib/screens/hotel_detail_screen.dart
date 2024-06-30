@@ -123,6 +123,17 @@ class _HotelInformation extends StatelessWidget {
             ),
             onRatingUpdate: (rating) {},
           ),
+          const SizedBox(height: 10),
+          Text(
+            hotel.lokasi,
+            maxLines: 10,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.justify,
+            style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: Colors.grey),
+          ),
           const SizedBox(height: 20),
           Text(
             'About',
