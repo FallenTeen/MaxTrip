@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:maxtrip/screens/rencana_screen.dart';
 import '../models/hotel_model.dart';
 import '../widgets/clipped_container.dart';
 
@@ -75,38 +76,38 @@ class _HotelInformation extends StatelessWidget {
                 .copyWith(fontWeight: FontWeight.bold),
           ),
           Row(
-                    children: hotel.fasilitas.map((facility) {
-                      IconData iconData;
-                      switch (facility) {
-                        case 'wifi':
-                          iconData = Icons.wifi;
-                          break;
-                        case 'pool':
-                          iconData = Icons.pool;
-                          break;
-                        case 'parking':
-                          iconData = Icons.local_parking;
-                          break;
-                        case 'restaurant':
-                          iconData = Icons.restaurant;
-                          break;
-                        case 'bathub':
-                          iconData = Icons.bathtub;
-                          break;
-                        case 'shower':
-                          iconData = Icons.shower;
-                          break;
-                        // Add more cases for other facilities as needed
-                        default:
-                          iconData = Icons.hotel; // Default icon
-                          break;
-                      }
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 5.0),
-                        child: Icon(iconData, size: 16),
-                      );
-                    }).toList(),
-                  ),
+            children: hotel.fasilitas.map((facility) {
+              IconData iconData;
+              switch (facility) {
+                case 'wifi':
+                  iconData = Icons.wifi;
+                  break;
+                case 'pool':
+                  iconData = Icons.pool;
+                  break;
+                case 'parking':
+                  iconData = Icons.local_parking;
+                  break;
+                case 'restaurant':
+                  iconData = Icons.restaurant;
+                  break;
+                case 'bathub':
+                  iconData = Icons.bathtub;
+                  break;
+                case 'shower':
+                  iconData = Icons.shower;
+                  break;
+                // Add more cases for other facilities as needed
+                default:
+                  iconData = Icons.hotel;
+                  break;
+              }
+              return Padding(
+                padding: const EdgeInsets.only(right: 5.0),
+                child: Icon(iconData, size: 16),
+              );
+            }).toList(),
+          ),
           const SizedBox(height: 10),
           RatingBar.builder(
             initialRating: hotel.jmlBintang.toDouble(),
@@ -124,7 +125,10 @@ class _HotelInformation extends StatelessWidget {
           const SizedBox(height: 20),
           Text(
             'About',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 10),
           Text(
@@ -139,11 +143,20 @@ class _HotelInformation extends StatelessWidget {
             children: [
               Text(
                 'Rp ${hotel.harga}',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                 onPressed: () {
                   // Handle 'Buat Rencana' button press
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RencanaScreen(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 16, 138, 204),
@@ -153,7 +166,10 @@ class _HotelInformation extends StatelessWidget {
                 ),
                 child: Text(
                   'Buat Rencana',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.white),
                 ),
               ),
             ],
