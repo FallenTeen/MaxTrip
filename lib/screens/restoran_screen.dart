@@ -18,7 +18,7 @@ class RestaurantsScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50),
-          const CustomHeader(title: 'Restoran Indo'), // Ganti judul sesuai kebutuhan
+          const CustomHeader(title: 'Restoran Banyumas'), // Ganti judul sesuai kebutuhan
           Expanded(
             child: _RestaurantsGrid(
               width: width,

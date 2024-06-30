@@ -19,7 +19,7 @@ class Restaurant {
     Restaurant(
       id: '1',
       name: 'Pringsewu Baturraden',
-      description: 'Pringsewu menyediakan berbagai makanan',
+      description: 'Belum lengkap rasanya kalau berkunjung ke Baturraden tapi belum singgah di Pringsewu Baturraden. Dari luar, resto ini tampak biasa saja hanya terlihat toko souvenir dan oleh-oleh khas Purwokerto. Setelah melewati pintu masuk yang tidak terlalu besar, barulah terlihat bagaimana suasana di dalamnya. ruang makan di dalam cukup luas dan menampung sekitar 200 orang. Fasilitas di Pringsewu Baturraden ini beragam, meeting room, seperti panggung hiburan, taman yang cukup luas dan indah, kolam terapi ikan, mushola, gazebo dan taman bermain anak. Di sudut taman tersedia bangunan seperti villa untuk disewakan. Asyiknya makan di restoran Pringsewu ini, ada hadiah khusus untuk yang ulang tahun, biasanya seperti puding berbentuk hati. Menu unik dari resto ini adalah Ayam Kodok cocol sambal.',
       imageUrl: 'https://www.kemutuglor-baturraden.desa.id/wp-content/uploads/Lokasi-Kawasan-Hutan-Lindung-Kebun-Raya-Baturraden-kabupaten-Banyumas.webp',
       price: 15000,
       rating: 4.0,
