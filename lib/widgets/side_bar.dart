@@ -26,7 +26,6 @@ class _SideBarState extends State<SideBar> {
     {'title': 'Hotel', 'routeName': '/hotels'},
     {'title': 'Restoran', 'routeName': '/restaurants'},
     {'title': 'Rencana', 'routeName': '/rencanas'},
-    {'title': 'Profile', 'routeName': '/profile'},
   ];
 
   int sideBarIndex = 0;
@@ -44,14 +43,10 @@ class _SideBarState extends State<SideBar> {
             tooltip: 'Home',
             onPressed: () {
               setState(() {
-                // Update navigation to profile_screen.dart
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          DashboardProfile()), // Ganti dengan ProfileScreen
-                );
+                sideBarIndex = 0; // Update sideBarIndex to 0
               });
+              widget.navigator.currentState!
+                  .pushNamed('/profile'); // Navigate to /profile route
             },
           ),
           ListView.builder(
