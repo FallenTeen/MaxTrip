@@ -36,7 +36,8 @@ class RencanaDetailsScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => ConfirmCheckoutScreen(rencana: rencana),
+                      builder: (context) =>
+                          ConfirmCheckoutScreen(rencana: rencana),
                     ),
                   );
                 },

@@ -5,7 +5,6 @@ import 'package:maxtrip/screens/activities_screen.dart';
 import 'package:maxtrip/screens/profile_screen.dart';
 import 'package:maxtrip/screens/restoran_screen.dart';
 import 'package:maxtrip/screens/rencana_screen.dart';
-import 'package:maxtrip/screens/profile_screen.dart';
 import 'package:maxtrip/widgets/side_bar.dart';
 
 class MainPage extends StatefulWidget {

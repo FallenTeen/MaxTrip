@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maxtrip/screens/HomeScreen.dart';
+import 'package:maxtrip/screens/profile_screen.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({
@@ -43,9 +44,12 @@ class _SideBarState extends State<SideBar> {
             tooltip: 'Home',
             onPressed: () {
               setState(() {
+                // Update navigation to profile_screen.dart
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DashboardProfile()), // Ganti dengan ProfileScreen
                 );
               });
             },

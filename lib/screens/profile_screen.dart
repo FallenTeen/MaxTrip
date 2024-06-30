@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maxtrip/halaman/authpage.dart';
 
 class DashboardProfile extends StatelessWidget {
@@ -8,7 +9,9 @@ class DashboardProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
+    final user = FirebaseAuth.instance.currentUser;
+    final userName = user?.displayName ?? '';
+    final userEmail = user?.email ?? '';
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -70,7 +73,7 @@ class DashboardProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "Dicky Arya Saputra",
+                    userName,
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -78,7 +81,7 @@ class DashboardProfile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Logged in with Google",
+                    userEmail,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white70,
