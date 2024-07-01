@@ -53,7 +53,7 @@ class DashboardProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    "Hello, Welcome $userName!",
+                    "Hello, Welcome $userName",
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
